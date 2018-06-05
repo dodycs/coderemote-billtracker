@@ -2,16 +2,16 @@
 
 {% block body %}
 <h1>Bill Tracker</h1>
-   <form action="">
+   <form action="{{ url_for('add_bill') }}" method="POST">
       <div class="formgroup row">
          <div class="col-7">
-            <input type="text" class="form-control">
+            <input type="text" name="description" class="form-control">
          </div>
          <div class="col-2">
-            <input type="text" class="form-control">
+            <input type="text" name="amount" class="form-control">
          </div>
          <div class="col-auto">
-            <button class="btn btn-primary">Submit</button>
+            <button class="btn btn-primary" type="submit">Submit</button>
          </div>
       </div>
    </form>

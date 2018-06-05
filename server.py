@@ -7,4 +7,11 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+@app.route('/add_bill', methods=['POST'])
+def add_bill():
+    amount = request.form['amount']
+    description = request.form['description']
+    create_bill(amount, description)
+    return render_template('index.html')
+
 app.run(debug=True)
