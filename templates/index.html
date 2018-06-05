@@ -1,18 +1,23 @@
-{% extends('base.html') %}
-
-{% block body %}
+{% extends('base.html') %} {% block body %}
 <h1>Bill Tracker</h1>
-   <form action="{{ url_for('add_bill') }}" method="POST">
-      <div class="formgroup row">
-         <div class="col-7">
-            <input type="text" name="description" class="form-control">
-         </div>
-         <div class="col-2">
-            <input type="text" name="amount" class="form-control">
-         </div>
-         <div class="col-auto">
-            <button class="btn btn-primary" type="submit">Submit</button>
-         </div>
+<form action="{{ url_for('add_bill') }}" method="POST">
+   <div class="formgroup row">
+      <div class="col-7">
+         <input type="text" name="description" class="form-control">
       </div>
-   </form>
-{% endblock body %}
+      <div class="col-2">
+         <input type="text" name="amount" class="form-control">
+      </div>
+      <div class="col-auto">
+         <button class="btn btn-primary" type="submit">Submit</button>
+      </div>
+   </div>
+</form>
+<div class="row">
+</div>
+{% for bill in bills %}
+<div class="row">
+   <div class="col-7">{{ bill.description }}</div>
+   <div class="col-2">{{ bill.amount }}</div>
+</div>
+{% endfor %} {% endblock body %}

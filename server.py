@@ -12,6 +12,7 @@ def add_bill():
     amount = request.form['amount']
     description = request.form['description']
     create_bill(amount, description)
-    return render_template('index.html')
+    b = get_all_bills()
+    return render_template('index.html', bills = b)
 
 app.run(debug=True)
