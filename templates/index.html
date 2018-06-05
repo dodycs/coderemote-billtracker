@@ -1,6 +1,6 @@
 {% extends('base.html') %} {% block body %}
 <h1>Bill Tracker</h1>
-<form action="{{ url_for('add_bill') }}" method="POST">
+<form action="{{ url_for('add_bill') }}" method="POST" class="mb-3">
    <div class="formgroup row">
       <div class="col-7">
          <input type="text" name="description" class="form-control">
@@ -13,11 +13,13 @@
       </div>
    </div>
 </form>
-<div class="row">
-</div>
 {% for bill in bills %}
-<div class="row">
+<div class="row align-items-center mb-2">
    <div class="col-7">{{ bill.description }}</div>
    <div class="col-2">{{ bill.amount }}</div>
+   <div class="col-auto">
+      <a class="btn btn-warning btn-sm" href="{{ url_for('edit', bill_id=bill.id) }}">Edit</a>
+      <a class="btn btn-danger btn-sm" href="{{ url_for('delete', bill_id=bill.id) }}">Delete</a>
+   </div>
 </div>
 {% endfor %} {% endblock body %}

@@ -6,8 +6,6 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     b = get_all_bills()
-    print('--------------------')
-    print(b)
     return render_template('index.html', bills = b)
 
 @app.route('/add_bill', methods=['POST'])
@@ -18,4 +16,18 @@ def add_bill():
 
     return redirect(url_for('index'))
 
-app.run(debug=True)
+@app.route('/delete_bill/<bill_id>')
+def delete(bill_id):
+    delete_bill(bill_id)
+    return redirect(url_for('index'))
+
+@app.route('/edit/<bill_id>', methods=['POST', 'GET'])
+def edit(bill_id):
+    if request.method == 'POST':
+        update_bill(bill_id, request.form['amount'], request.form['description'])
+        return redirect(url_for('index'))
+    bill = get_bill(bill_id)
+    return render_template('edit.html', bill=bill)
+
+
+app.run(debug=True) 
